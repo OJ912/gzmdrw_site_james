@@ -319,7 +319,6 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           this.form.catalogId = this.catalogId;
-        
           // 确保内容数据被正确序列化
           // 深拷贝内容数据，以避免引用问题
           const contentCopy = JSON.parse(JSON.stringify(this.form.content));
