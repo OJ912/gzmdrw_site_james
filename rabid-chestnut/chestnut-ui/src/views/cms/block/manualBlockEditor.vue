@@ -2,7 +2,7 @@
   <div class="app-container block-manual-container">
       <el-row :gutter="10" class="mb12">
         <el-col :span="1.5">
-          <el-button 
+          <el-button
             plain
             type="success"
             icon="el-icon-edit"
@@ -11,7 +11,7 @@
             @click="handleSave">{{ $t("Common.Save") }}</el-button>
         </el-col>
         <el-col :span="1.5">
-          <el-button 
+          <el-button
             plain
             type="primary"
             icon="el-icon-s-promotion"
@@ -20,7 +20,7 @@
             @click="handlePublish">{{ $t('CMS.ContentCore.Publish') }}</el-button>
         </el-col>
         <el-col :span="1.5">
-          <el-button 
+          <el-button
             plain
             type="primary"
             icon="el-icon-view"
@@ -28,7 +28,7 @@
             @click="handlePreview">{{ $t('CMS.ContentCore.Preview') }}</el-button>
         </el-col>
       </el-row>
-    <el-form 
+    <el-form
       ref="form"
       :model="form"
       :rules="rules"
@@ -59,7 +59,7 @@
           </el-form-item>
           <el-form-item :label="$t('CMS.PageWidget.Template')" prop="template">
             <el-input v-model="form.template" :disabled="templateDisabled" >
-            <el-button 
+            <el-button
               slot="append"
               type="primary"
               :disabled="templateDisabled"
@@ -83,9 +83,9 @@
         <el-table-column :label="$t('CMS.Block.Title')" prop="title">
           <template slot-scope="scope">
             <span class="row-insert">
-              <el-button 
-                icon="el-icon-plus" 
-                circle 
+              <el-button
+                icon="el-icon-plus"
+                circle
                 size="mini"
                 @click="handleAddItem(scope.$index)">
               </el-button>
@@ -99,16 +99,16 @@
                 v-for="(item, index) in scope.row.items">
                 <el-link :underline="false" @click="handleEditItem(scope.$index, index)">{{item.title}}</el-link>
                 <span class="item-op">
-                  <el-link 
+                  <el-link
                     class="item-op-add"
-                    :underline="false" 
-                    icon="el-icon-circle-plus-outline" 
+                    :underline="false"
+                    icon="el-icon-circle-plus-outline"
                     @click="handleAddItem(scope.$index, index + 1)">
                   </el-link>
-                  <el-link 
+                  <el-link
                     class="item-op-del"
-                    :underline="false" 
-                    icon="el-icon-circle-close" 
+                    :underline="false"
+                    icon="el-icon-circle-close"
                     @click="handleDeleteItem(scope.$index, index)">
                   </el-link>
                 </span>
@@ -148,13 +148,13 @@
       </el-table>
     </el-card>
     <!-- 链接编辑弹窗 -->
-    <el-dialog 
+    <el-dialog
       :title="title"
       :visible.sync="dialogVisible"
       :close-on-click-modal="false"
       width="600px"
       append-to-body>
-      <el-form 
+      <el-form
         ref="form_item"
         :model="form_item"
         label-width="80px"
@@ -198,8 +198,8 @@
       </div>
     </el-dialog>
     <!-- 模板选择组件 -->
-    <cms-template-selector 
-      :open="openTemplateSelector" 
+    <cms-template-selector
+      :open="openTemplateSelector"
       :publishPipeCode="form.publishPipeCode"
       @ok="handleTemplateSelected"
       @cancel="handleTemplateSelectorCancel" />
@@ -319,8 +319,6 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           this.form.catalogId = this.catalogId;
-          this.form.contentStr = JSON.stringify(this.form.content);
-          
           // 确保内容数据被正确序列化
           // 深拷贝内容数据，以避免引用问题
           const contentCopy = JSON.parse(JSON.stringify(this.form.content));
